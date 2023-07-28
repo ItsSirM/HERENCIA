@@ -11,33 +11,69 @@ import java.util.ArrayList;
  * @author MARTI
  */
 public class PlanSamsung extends Plan{
-     
-    private String Pin;
-    private ArrayList<String> bbm;
+     private String pin;
+    private ArrayList<String> pines;
 
-    public PlanSamsung(String Pin, String numeroDeTelefono, String nombreDeCliente) {
+    public PlanSamsung(String pin, String numeroDeTelefono, String nombreDeCliente) {
         super(numeroDeTelefono, nombreDeCliente);
-        this.Pin = Pin;
-        this.bbm = new ArrayList<>();
+        this.pin = pin;
+        this.pines = new ArrayList<>();
+    }
+
+    
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void agregarPinAmigo(String pinAmigo) {
+        if (!pines.contains(pinAmigo)) {
+            pines.add(pinAmigo);
+        }
     }
 
     @Override
     public double pagoMensual(int mins, int msgs) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        double costoPlan = 40;
+        int minutosGratis = 200;
+        int mensajesGratis = 300;
+
+        int minutosAdicionales = Math.max(0, mins - minutosGratis);
+        int mensajesAdicionales = Math.max(0, msgs - mensajesGratis);
+
+        double costoMinutos = 0.8 * minutosAdicionales;
+        double costoMensajes = 0.2 * mensajesAdicionales;
+
+        return costoPlan + costoMinutos + costoMensajes;
     }
 
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    @Override
+    public void imprimir() {
+        super.imprimir();
+        System.out.println("PIN: " + pin);
+    }
 }
+    
+    
+    
+    
+    
+    
+    
+
+
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
